@@ -1,0 +1,84 @@
+<template>
+  <main>
+    <div v-for="item in albums" :key="item[i]" class="ab-card">
+      <div>
+        <img :src="item.poster" :alt="item.title" />
+      </div>
+      <h2>{{ item.title }}</h2>
+      <h5>{{ item.author }}</h5>
+      <h5>{{ item.year }}</h5>
+    </div>
+  </main>
+</template>
+
+<script>
+import axios from "axios";
+
+export default {
+  name: "AlbumList",
+  data() {
+    return {
+      albums: [],
+      url: "https://flynn.boolean.careers/exercises/api/array/music",
+    };
+  },
+  props: {
+    // url: String,
+  },
+  components: {},
+  mounted() {
+    this.loadData();
+  },
+
+  methods: {
+    loadData() {
+      axios
+        .get(this.url)
+        .then((response) => {
+          if (response.status === 200) {
+            this.albums = response.data.response;
+            console.log(this.albums);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+@import "@/style/variables";
+
+main {
+  margin: 50px auto;
+  max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  .ab-card {
+    width: 180px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $bg-secondary;
+    padding-top: 15px;
+    border-radius: 5px;
+    h2 {
+      font-family: $font-fam;
+      font-size: 20px;
+      font-weight: $bold;
+      margin-top: 15px;
+    }
+    h5 {
+      font-size: 15px;
+      color: grey;
+    }
+    img {
+      height: 150px;
+      width: 150px;
+    }
+  }
+}
+</style>

@@ -1,11 +1,7 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="header col-12 d-flex align-items-center">
-        <img src="../assets/spotify-logo.png" alt="spotify logo" />
-      </div>
-    </div>
-  </div>
+  <header>
+    <img src="../assets/spotify-logo.png" alt="spotify logo" />
+  </header>
 </template>
 
 <script>
@@ -16,11 +12,14 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/style/variables";
-.header {
+header {
+  display: flex;
+  align-items: center;
   background-color: $bg-secondary;
   height: 70px;
   img {
     height: 50px;
+    margin-left: 30px;
   }
 }
 </style>
