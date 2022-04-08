@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/style/variables";
+
 header {
   display: flex;
   align-items: center;

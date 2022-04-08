@@ -1,9 +1,10 @@
 <template>
   <main>
+    <!-- card -->
     <div v-for="(item, index) in albums" :key="index" class="ab-card">
-      <div>
-        <img :src="item.poster" :alt="item.title" />
-      </div>
+      <!-- img -->
+      <img :src="item.poster" :alt="item.title" />
+      <!-- details -->
       <h2>{{ item.title }}</h2>
       <h5>{{ item.author }}</h5>
       <h5>{{ item.year }}</h5>
@@ -65,7 +66,6 @@ main {
     padding-top: 15px;
     border-radius: 5px;
     h2 {
-      font-family: $font-fam;
       font-size: 20px;
       font-weight: $bold;
       margin-top: 15px;
