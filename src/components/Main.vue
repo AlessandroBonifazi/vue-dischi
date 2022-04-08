@@ -1,19 +1,25 @@
 <template>
   <main>
-    <!-- card -->
-    <div v-for="(item, index) in albums" :key="index" class="ab-card">
-      <!-- img -->
-      <img :src="item.poster" :alt="item.title" />
-      <!-- details -->
-      <h2>{{ item.title }}</h2>
-      <h5>{{ item.author }}</h5>
-      <h5>{{ item.year }}</h5>
+    <div v-if="albums.length === 10" class="main">
+      <!-- card -->
+      <div v-for="(item, index) in albums" :key="index" class="ab-card">
+        <!-- img -->
+        <img :src="item.poster" :alt="item.title" />
+        <!-- details -->
+        <h2>{{ item.title }}</h2>
+        <h5>{{ item.author }}</h5>
+        <h5>{{ item.year }}</h5>
+      </div>
+    </div>
+    <div v-else>
+      <Loader />
     </div>
   </main>
 </template>
 
 <script>
 import axios from "axios";
+import Loader from "../components/Loader.vue";
 
 export default {
   name: "AlbumList",
@@ -25,7 +31,9 @@ export default {
   props: {
     url: String,
   },
-  components: {},
+  components: {
+    Loader,
+  },
   mounted() {
     this.loadData();
   },
@@ -51,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/style/variables";
 
-main {
+.main {
   margin: 50px auto;
   max-width: 1000px;
   display: flex;
