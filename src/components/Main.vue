@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div v-for="item in albums" :key="item[i]" class="ab-card">
+    <div v-for="(item, index) in albums" :key="index" class="ab-card">
       <div>
         <img :src="item.poster" :alt="item.title" />
       </div>
@@ -19,11 +19,10 @@ export default {
   data() {
     return {
       albums: [],
-      url: "https://flynn.boolean.careers/exercises/api/array/music",
     };
   },
   props: {
-    // url: String,
+    url: String,
   },
   components: {},
   mounted() {
@@ -70,6 +69,7 @@ main {
       font-size: 20px;
       font-weight: $bold;
       margin-top: 15px;
+      text-transform: uppercase;
     }
     h5 {
       font-size: 15px;

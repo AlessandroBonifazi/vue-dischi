@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <Main />
+    <Main :url="apiUrl" />
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      // apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
+      apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
     };
   },
 };
