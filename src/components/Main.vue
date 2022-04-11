@@ -1,8 +1,13 @@
 <template>
   <main>
-    <div v-if="albums.length === 10" class="main">
+    <!-- search -->
+    <SearchComponent
+      @searchArtist="filterByArtist"
+      @filterByGenre="filterByGenre"
+    />
+    <div v-if="!loading" class="ab-container">
       <!-- card -->
-      <div v-for="(item, index) in albums" :key="index" class="ab-card">
+      <div v-for="(item, index) in filteredAlbums" :key="index" class="ab-card">
         <!-- img -->
         <img :src="item.poster" :alt="item.title" />
         <!-- details -->
@@ -20,19 +25,36 @@
 <script>
 import axios from "axios";
 import Loader from "../components/Loader.vue";
+import SearchComponent from "../components/SearchComponent.vue";
 
 export default {
   name: "AlbumList",
   data() {
     return {
       albums: [],
+      genre: "",
+      artist: "",
     };
   },
   props: {
     url: String,
   },
+  computed: {
+    loading() {
+      return this.albums.length === 0;
+    },
+    filteredAlbums() {
+      if (this.genre.lenght === 0 || this.genre === "All") {
+        return this.albums;
+      }
+      return this.albums.filter((item) =>
+        item.genre.toLowerCase().includes(this.genre.toLowerCase())
+      );
+    },
+  },
   components: {
     Loader,
+    SearchComponent,
   },
   mounted() {
     this.loadData();
@@ -52,14 +74,21 @@ export default {
           console.log(error);
         });
     },
+    filterByGenre(genre) {
+      this.genre = genre;
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/style/variables";
-
-.main {
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ab-container {
   margin: 50px auto;
   max-width: 1000px;
   display: flex;
