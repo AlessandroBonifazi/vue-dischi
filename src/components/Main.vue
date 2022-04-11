@@ -52,17 +52,17 @@ export default {
       ) {
         return this.albums;
       }
-      return this.albums.filter((item) =>
+      // return this.albums.filter((item) =>
+      //   item.genre.toLowerCase().includes(this.genre.toLowerCase())
+      // );
+
+      const filtered = this.albums.filter((item) =>
         item.genre.toLowerCase().includes(this.genre.toLowerCase())
       );
 
-      // const filtered = this.albums.filter((item) => {
-      //   return item.genre.toLowerCase().includes(this.genre.toLowerCase());
-      // });
-
-      // return filtered.filter((item) => {
-      //   item.author.toLowerCase().includes(this.artist.toLowerCase());
-      // });
+      return filtered.filter((item) =>
+        item.author.toLowerCase().includes(this.artist.toLowerCase())
+      );
     },
   },
   components: {
