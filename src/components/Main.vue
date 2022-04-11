@@ -2,7 +2,7 @@
   <main>
     <!-- search -->
     <SearchComponent
-      @searchArtist="filterByArtist"
+      @filterByArtist="filterByArtist"
       @filterByGenre="filterByGenre"
     />
     <div v-if="!loading" class="ab-container">
@@ -44,12 +44,25 @@ export default {
       return this.albums.length === 0;
     },
     filteredAlbums() {
-      if (this.genre.lenght === 0 || this.genre === "All") {
+      if (
+        this.genre.lenght === 0 ||
+        this.genre === "All" ||
+        this.artist.lenght === 0 ||
+        this.artist === "All"
+      ) {
         return this.albums;
       }
       return this.albums.filter((item) =>
         item.genre.toLowerCase().includes(this.genre.toLowerCase())
       );
+
+      // const filtered = this.albums.filter((item) => {
+      //   return item.genre.toLowerCase().includes(this.genre.toLowerCase());
+      // });
+
+      // return filtered.filter((item) => {
+      //   item.author.toLowerCase().includes(this.artist.toLowerCase());
+      // });
     },
   },
   components: {
@@ -76,6 +89,9 @@ export default {
     },
     filterByGenre(genre) {
       this.genre = genre;
+    },
+    filterByArtist(artist) {
+      this.artist = artist;
     },
   },
 };
