@@ -44,23 +44,17 @@ export default {
       return this.albums.length === 0;
     },
     filteredAlbums() {
-      if (
-        this.genre.lenght === 0 ||
-        this.genre === "All" ||
-        this.artist.lenght === 0 ||
-        this.artist === "All"
-      ) {
-        return this.albums;
+      const filteredByGenre =
+        this.genre.lenght === 0 || this.genre === "All"
+          ? this.albums
+          : this.albums.filter((item) =>
+              item.genre.toLowerCase().includes(this.genre.toLowerCase())
+            );
+
+      if (this.artist.lenght === 0 || this.artist === "All") {
+        return filteredByGenre;
       }
-      // return this.albums.filter((item) =>
-      //   item.genre.toLowerCase().includes(this.genre.toLowerCase())
-      // );
-
-      const filtered = this.albums.filter((item) =>
-        item.genre.toLowerCase().includes(this.genre.toLowerCase())
-      );
-
-      return filtered.filter((item) =>
+      return filteredByGenre.filter((item) =>
         item.author.toLowerCase().includes(this.artist.toLowerCase())
       );
     },
@@ -105,7 +99,7 @@ main {
   align-items: center;
 }
 .ab-container {
-  margin: 50px auto;
+  margin: 30px auto;
   max-width: 1000px;
   display: flex;
   flex-wrap: wrap;

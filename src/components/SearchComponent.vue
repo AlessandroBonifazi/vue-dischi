@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <select @change="setGenreValue($event)">
-      <option value="All">All</option>
+  <div class="select-container">
+    <select @change="setGenreValue($event)" class="ab-select">
+      <option value="All">All Genres</option>
       <option value="Rock">Rock</option>
       <option value="Metal">Metal</option>
       <option value="Pop">Pop</option>
       <option value="Jazz">Jazz</option>
     </select>
 
-    <select @change="setArtistValue($event)">
-      <option value="All">All</option>
+    <select @change="setArtistValue($event)" class="ab-select">
+      <option value="All">All Artists</option>
       <option value="Bon Jovi">Bon Jovi</option>
       <option value="Queen">Queen</option>
       <option value="Sting">Sting</option>
@@ -49,4 +49,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/style/variables";
+
+.select-container {
+  margin-top: 20px;
+  .ab-select {
+    height: 35px;
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.678);
+    border-radius: 10px;
+    color: white;
+    background-color: $bg-secondary;
+  }
+}
 </style>
