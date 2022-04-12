@@ -37,12 +37,12 @@ export default {
     setGenreValue(event) {
       console.log(event.target.value);
       this.selectedGenre = event.target.value;
-      this.$emit("filterByGenre", this.selectedGenre);
+      this.$emit("emitGenre", this.selectedGenre);
     },
     setArtistValue(event) {
       this.selectedArtist = event.target.value;
       console.log(event.target.value);
-      this.$emit("filterByArtist", this.selectedArtist);
+      this.$emit("emitArtist", this.selectedArtist);
     },
   },
 };

@@ -1,10 +1,7 @@
 <template>
   <main>
     <!-- search -->
-    <SearchComponent
-      @filterByArtist="filterByArtist"
-      @filterByGenre="filterByGenre"
-    />
+    <SearchComponent @emitArtist="filterByArtist" @emitGenre="filterByGenre" />
     <div v-if="!loading" class="ab-container">
       <!-- card -->
       <div v-for="(item, index) in filteredAlbums" :key="index" class="ab-card">
