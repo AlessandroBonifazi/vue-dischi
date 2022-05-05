@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     loading() {
-      return this.albums.length === 0;
+      return this.albums.lenght === 0;
     },
     filteredAlbums() {
       const filteredByGenre =
